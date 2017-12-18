@@ -1,10 +1,10 @@
 var display = document.getElementById('display')
-var operandos = {
-  n1: '',
-  n2: '',
-  con: 0,
-  resultado: ''
-}
+var n1 = '',
+  n2 = '',
+  con = 0,
+  resultado = '',
+  resultadoSig = '',
+  op = 0
 var Calculadora = {
   init: function() {
     var self = this
@@ -174,6 +174,8 @@ var Calculadora = {
       n2 = 0
       resultado = 0
       con = 0
+      op = 0
+      resultadoSig = 0
     })
     sign.addEventListener('click', function() {
       maso = display.innerHTML
@@ -193,8 +195,8 @@ var Calculadora = {
       self.dividir()
     })
     igual.addEventListener('click', function() {
-      self.operacion()
       con += 1
+      self.operacion()
     })
   },
   mostrar: function(num) {
@@ -214,7 +216,82 @@ var Calculadora = {
       display.innerHTML += ".";
     }
   },
-
+  sumar: function() {
+    op = 1
+    n1 = display.innerHTML
+    display.innerHTML = ''
+  },
+  restar: function() {
+    op = 2
+    n1 = display.innerHTML
+    display.innerHTML = ''
+  },
+  multiplicar: function() {
+    op = 3
+    n1 = display.innerHTML
+    display.innerHTML = ''
+  },
+  dividir: function() {
+    op = 4
+    n1 = display.innerHTML
+    display.innerHTML = ''
+  },
+  operacion: function() {
+    if (con == 1) {
+      switch (op) {
+        case 1:
+          n2 = display.innerHTML
+          resultado = Number(n1) + Number(n2)
+          display.innerHTML = resultado
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 2:
+          n2 = display.innerHTML
+          resultado = Number(n1) - Number(n2)
+          display.innerHTML = resultado
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 3:
+          n2 = display.innerHTML
+          resultado = Number(n1) * Number(n2)
+          display.innerHTML = resultado
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 4:
+          n2 = display.innerHTML
+          resultado = Number(n1) / Number(n2)
+          display.innerHTML = resultado
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+      }
+    } else if (con > 1) {
+      switch (op) {
+        case 1:
+          resultado = display.innerHTML
+          resultadoSig = Number(resultado) + Number(n2)
+          display.innerHTML = resultadoSig
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 2:
+          resultado = display.innerHTML
+          resultadoSig = Number(resultado) - Number(n2)
+          display.innerHTML = resultadoSig
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 3:
+          resultado = display.innerHTML
+          resultadoSig = Number(resultado) * Number(n2)
+          display.innerHTML = resultadoSig
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+        case 4:
+          resultado = display.innerHTML
+          resultadoSig = Number(resultado) / Number(n2)
+          display.innerHTML = resultadoSig
+          display.innerHTML = display.innerHTML.substring(0, 8)
+          break;
+      }
+    }
+  }
 }
-
 Calculadora.init()
