@@ -184,15 +184,19 @@ var Calculadora = {
     })
     mas.addEventListener('click', function() {
       self.sumar()
+      con = 0
     })
     menos.addEventListener('click', function() {
       self.restar()
+      con = 0
     })
     por.addEventListener('click', function() {
       self.multiplicar()
+      con = 0
     })
     dividido.addEventListener('click', function() {
       self.dividir()
+      con = 0
     })
     igual.addEventListener('click', function() {
       con += 1
